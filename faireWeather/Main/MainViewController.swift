@@ -1,5 +1,5 @@
 //
-//  RootViewController.swift
+//  MainViewController.swift
 //  faireWeather
 //
 //  Created by Matheus Weber on 11/03/23.
@@ -9,17 +9,16 @@ import RIBs
 import SnapKit
 import UIKit
 
-protocol RootPresentableListener: AnyObject {
+protocol MainPresentableListener: AnyObject {
     // TODO: Declare properties and methods that the view controller can invoke to perform
     // business logic, such as signIn(). This protocol is implemented by the corresponding
     // interactor class.
 }
 
-final class RootViewController: UIViewController, RootPresentable, RootViewControllable {
+final class MainViewController: UIViewController, MainPresentable, MainViewControllable {
 
-    weak var listener: RootPresentableListener?
-    private var mainView: UIView?
-    
+    weak var listener: MainPresentableListener?
+
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -31,11 +30,11 @@ final class RootViewController: UIViewController, RootPresentable, RootViewContr
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.red
     }
 
-    // MARK: - RootViewControllable
-    func addSubview(view: UIView) {
-        self.view.addSubview(view)
+    // MARK: - MainViewControllable
+    func present(viewController: ViewControllable) {
+        present(viewController.uiviewController, animated: true, completion: nil)
     }
 }
