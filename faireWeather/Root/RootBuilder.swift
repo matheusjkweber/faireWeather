@@ -32,8 +32,10 @@ final class RootBuilder: Builder<RootDependency>, RootBuildable {
         let component = RootComponent(dependency: dependency)
         let viewController = RootViewController()
         let interactor = RootInteractor(presenter: viewController)
-
+        let mainBuilder = MainBuilder(dependency: component)
+        
         return RootRouter(interactor: interactor,
-                          viewController: viewController)
+                          viewController: viewController,
+                          mainBuilder: mainBuilder)
     }
 }
