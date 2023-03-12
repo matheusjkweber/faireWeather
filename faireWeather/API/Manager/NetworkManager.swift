@@ -18,6 +18,7 @@ enum NetworkResponse:String {
     case noData = "Response returned with no data to decode."
     case unableToDecode = "We could not decode the response."
     case noInternetConnection = "No internet connection detected."
+    case testError
 }
 
 enum Result<NetworkResponse>{

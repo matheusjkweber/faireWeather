@@ -49,4 +49,23 @@ struct MainWeatherModel: Codable {
         self.latLong = try container.decode(String.self, forKey: .latLong)
         self.timezone = try container.decode(String.self, forKey: .timezone)
     }
+    
+    init(consolidatedWeather: [ConsolidateWeatherModel], time: String, sunRise: String, sunSet: String, timezoneName: String, parent: ParentModel, sources: [SourceModel], title: String, locationType: String, woeid: Int, latLong: String, timezone: String) {
+        self.consolidatedWeather = consolidatedWeather
+        self.time = time
+        self.sunRise = sunRise
+        self.sunSet = sunSet
+        self.timezoneName = timezoneName
+        self.parent = parent
+        self.sources = sources
+        self.title = title
+        self.locationType = locationType
+        self.woeid = woeid
+        self.latLong = latLong
+        self.timezone = timezone
+    }
+    
+    static func returnMock() -> MainWeatherModel {
+        return MainWeatherModel(consolidatedWeather: [], time: "", sunRise: "", sunSet: "", timezoneName: "", parent: ParentModel.returnMock(), sources: [], title: "", locationType: "", woeid: 0, latLong: "", timezone: "")
+    }
 }

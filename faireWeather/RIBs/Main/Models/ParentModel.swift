@@ -25,4 +25,15 @@ struct ParentModel: Codable {
         self.woeid = try container.decode(Int.self, forKey: .woeid)
         self.latLong = try container.decode(String.self, forKey: .latLong)
     }
+    
+    init(title: String, locationType: String, woeid: Int, latLong: String) {
+        self.title = title
+        self.locationType = locationType
+        self.woeid = woeid
+        self.latLong = latLong
+    }
+    
+    static func returnMock() -> ParentModel {
+        ParentModel(title: "", locationType: "", woeid: 0, latLong: "")
+    }
 }

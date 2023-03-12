@@ -20,10 +20,10 @@ protocol MainViewControllable: ViewControllable {
 final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, MainRouting {
 
     init(interactor: MainInteractable,
-                  viewController: MainViewControllable,
-                  citySelectorRouter: CitySelectorRouting,
-                  weatherDisplayRouter: WeatherDisplayRouting,
-                  weatherDetailsRouter: WeatherDetailsRouting){
+         viewController: MainViewControllable,
+         citySelectorRouter: CitySelectorRouting,
+         weatherDisplayRouter: WeatherDisplayRouting,
+         weatherDetailsRouter: WeatherDetailsRouting){
         self.citySelectorRouter = citySelectorRouter
         self.weatherDetailsRouter = weatherDetailsRouter
         self.weatherDisplayRouter = weatherDisplayRouter

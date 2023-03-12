@@ -40,11 +40,6 @@ final class WeatherDetailsInteractor: PresentableInteractor<WeatherDetailsPresen
         // TODO: Implement business logic here.
     }
 
-    override func willResignActive() {
-        super.willResignActive()
-        // TODO: Pause any business logic.
-    }
-    
     func setLayout() {
         presenter.presentMainView()
     }
