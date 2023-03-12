@@ -12,6 +12,7 @@
 ## Architecture
 The Faire Weather App is built using the <a href="https://github.com/uber/RIBs">RIB architecture</a>, which is a cross-platform architecture framework used in Uber's project. The name means Router, Interactor and Builder. <br />
 The usage of the RIB architecture was defined because it provides: state management, testability, isolation and escalation. <br />
+Also, the RIB architecture is very good to handle dependency management due its state management. 
 The Faire Weather App is built as follow: <br/>
 
 <br />
@@ -20,7 +21,9 @@ The Faire Weather App is built as follow: <br/>
 </p>
 
 ### Root RIB 
-The Root RIB is responsible for consolidating the root scope of the app. If necessary add more states, they can be added under this RIB. Also it is responsible for creating and maintaining the FaireAPI, injecting in any children that want to access it.
+The Root RIB is responsible for consolidating the root scope of the app. If necessary add more states, they can be added under this RIB. Also it is responsible for creating and maintaining the FaireAPI, injecting in any children that want to access it. <br />
+
+The Root RIB is responsible for holding the Root scope, and with this, it will create the dependencies used across the entire app. The dependencies are injected by the RootComponent. 
 ### Main RIB 
 The Main RIB is responsible for the main part of the app, everything else should be optional. The main view of the app should contain the main information that the app needs to pass: the weather. The Main RIB is responsible for consuming the FaireAPI, treating the information and passing along its children.<br/>
 
@@ -51,4 +54,4 @@ pod install
 ```
 
 #### CocoaPods
-In order to test the app, you need to change the target to faireWeatherTests and run the cmd+U command.
+In order to test the app, you need to change the target to *faireWeatherTests* and run the *cmd+U* command.
