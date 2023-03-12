@@ -38,9 +38,4 @@ final class RootInteractor: PresentableInteractor<RootPresentable>, RootInteract
         super.didBecomeActive()
         // TODO: Implement business logic here.
     }
-
-    override func willResignActive() {
-        super.willResignActive()
-        // TODO: Pause any business logic.
-    }
 }

@@ -58,11 +58,6 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
         super.didBecomeActive()
         // TODO: Implement business logic here.
     }
-
-    override func willResignActive() {
-        super.willResignActive()
-        // TODO: Pause any business logic.
-    }
     
     func loadComponentsFor(citySelectedView: CitySelectedView, weatherDisplayView: WeatherDisplayView, weatherDetailsView: WeatherDetailsView) {
         presenter.presentLoading()
@@ -77,7 +72,6 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
                            weatherDetailsView: weatherDetailsView)
         } failure: { error in
             DispatchQueue.main.async {
-                self.presenter.hideLoading()
                 self.presenter.presentError(message: error.rawValue)
             }
         }

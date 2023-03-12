@@ -27,7 +27,7 @@ class WeatherDetailsBuildableMock: WeatherDetailsBuildable {
     }
 }
 
-class WeatherDetailsInteractableMock: WeatherDetailsInteractable {
+class WeatherDetailsInteractableMock: WeatherDetailsInteractable, Interactable {
     // Variables
     var router: WeatherDetailsRouting? { didSet { routerSetCallCount += 1 } }
     var routerSetCallCount = 0
@@ -136,6 +136,168 @@ class WeatherDetailsRoutingMock: WeatherDetailsRouting {
             setLayoutHandler()
         }
     }
+}
+
+class WeatherDetailsPresentableMock: WeatherDetailsPresentable {
+    // Variables
+    var listener: WeatherDetailsPresentableListener? { didSet { listenerSetCallCount += 1 } }
+    var listenerSetCallCount = 0
+    
+    // Function Handlers
+    var presentMainViewHandler: (() -> ())?
+    var presentMainViewCount: Int = 0
+
+    init() {
+    }
+
+    func presentMainView() {
+        presentMainViewCount += 1
+        if let presentMainViewHandler = presentMainViewHandler {
+            presentMainViewHandler()
+        }
+    }
+}
+
+class WeatherDetailsListenerMock: WeatherDetailsListener {
+    
+}
+
+class WeatherDetailsViewControllableMock: WeatherDetailsViewControllable {
+    // Variables
+    var uiviewController: UIViewController = UIViewController() { didSet { uiviewControllerSetCallCount += 1 } }
+    var uiviewControllerSetCallCount = 0
+
+    // Function Handlers
+    var presentHandler: ((_ viewController: ViewControllable) -> ())?
+    var presentCallCount: Int = 0
+    var dismissHandler: ((_ viewController: ViewControllable) -> ())?
+    var dismissCallCount: Int = 0
+
+    init() {
+    }
+
+    func present(viewController: ViewControllable) {
+        presentCallCount += 1
+        if let presentHandler = presentHandler {
+            return presentHandler(viewController)
+        }
+    }
+
+    func dismiss(viewController: ViewControllable) {
+        dismissCallCount += 1
+        if let dismissHandler = dismissHandler {
+            return dismissHandler(viewController)
+        }
+    }
+}
+
+class WeatherDisplayPresentableMock: WeatherDisplayPresentable {
+    // Variables
+    var listener: WeatherDisplayPresentableListener? { didSet { listenerSetCallCount += 1 } }
+    var listenerSetCallCount = 0
+    
+    // Function Handlers
+    var presentMainViewHandler: (() -> ())?
+    var presentMainViewCount: Int = 0
+
+    init() {
+    }
+
+    func presentMainView() {
+        presentMainViewCount += 1
+        if let presentMainViewHandler = presentMainViewHandler {
+            presentMainViewHandler()
+        }
+    }
+}
+
+class WeatherDisplayListenerMock: WeatherDetailsListener {
+    
+}
+
+class CitySelectorPresentableMock: CitySelectorPresentable {
+    // Variables
+    var listener: CitySelectorPresentableListener? { didSet { listenerSetCallCount += 1 } }
+    var listenerSetCallCount = 0
+    
+    // Function Handlers
+    var presentMainViewHandler: (() -> ())?
+    var presentMainViewCount: Int = 0
+
+    init() {
+    }
+
+    func presentMainView() {
+        presentMainViewCount += 1
+        if let presentMainViewHandler = presentMainViewHandler {
+            presentMainViewHandler()
+        }
+    }
+}
+
+class CitySelectorListenerMock: CitySelectorListener {
+    
+}
+
+class MainPresentableMock: MainPresentable {
+    // Variables
+    var listener: MainPresentableListener? { didSet { listenerSetCallCount += 1 } }
+    var listenerSetCallCount = 0
+    
+    // Function Handlers
+    var presentLoadingHandler: (() -> ())?
+    var presentLoadingCount: Int = 0
+    var hideLoadingHandler: (() -> ())?
+    var hideLoadingCount: Int = 0
+    var presentErrorHandler: ((String) -> ())?
+    var presentErrorCount: Int = 0
+    var presentHandler: ((SetuppableView) -> ())?
+    var presentCount: Int = 0
+    var cleanComponentsHandler: (() -> ())?
+    var cleanComponentsCount: Int = 0
+    
+    func presentLoading() {
+        presentLoadingCount += 1
+        
+        if let presentLoadingHandler = presentLoadingHandler {
+            presentLoadingHandler()
+        }
+    }
+    
+    func hideLoading() {
+        hideLoadingCount += 1
+        
+        if let hideLoadingHandler = hideLoadingHandler {
+            hideLoadingHandler()
+        }
+    }
+    
+    func presentError(message: String) {
+        presentErrorCount += 1
+        
+        if let presentErrorHandler = presentErrorHandler {
+            presentErrorHandler(message)
+        }
+    }
+    
+    func present(component: SetuppableView) {
+        presentCount += 1
+        
+        if let presentHandler = presentHandler {
+            presentHandler(component)
+        }
+    }
+    
+    func cleanComponents() {
+        cleanComponentsCount += 1
+        
+        if let cleanComponentsHandler = cleanComponentsHandler {
+            cleanComponentsHandler()
+        }
+    }
+}
+
+class MainListenerMock: MainListener {
 }
 
 class WeatherDisplayBuildableMock: WeatherDisplayBuildable {
@@ -479,7 +641,7 @@ class MainRoutingMock: MainRouting {
     var detachChildCallCount: Int = 0
    
     init(interactable: Interactable,
-         viewControllable: CitySelectorViewControllable) {
+         viewControllable: MainViewControllable) {
         self.interactable = interactable
         self.viewControllable = viewControllable
     }
@@ -537,4 +699,28 @@ class MainServicingMock: MainServicing {
             getImageHandler(imageURL, success, failure)
         }
     }
+}
+
+class RootPresentableMock: RootPresentable {
+    // Variables
+    var listener: RootPresentableListener? { didSet { listenerSetCallCount += 1 } }
+    var listenerSetCallCount = 0
+    
+    // Function Handlers
+    var presentMainViewHandler: (() -> ())?
+    var presentMainViewCount: Int = 0
+
+    init() {
+    }
+
+    func presentMainView() {
+        presentMainViewCount += 1
+        if let presentMainViewHandler = presentMainViewHandler {
+            presentMainViewHandler()
+        }
+    }
+}
+
+class RootListenerMock: RootListener {
+    
 }
