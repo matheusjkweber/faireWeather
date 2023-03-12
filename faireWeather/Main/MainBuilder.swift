@@ -31,9 +31,15 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
         let component = MainComponent(dependency: dependency)
         let viewController = MainViewController()
         let interactor = MainInteractor(presenter: viewController)
+        let citySelectorRouter = CitySelectorBuilder(dependency: component).build(withListener: interactor)
+        let weatherDisplayRouter = WeatherDisplayBuilder(dependency: component).build(withListener: interactor)
+        let weatherDetailsRouter = WeatherDetailsBuilder(dependency: component).build(withListener: interactor)
 
         return MainRouter(interactor: interactor,
-                          viewController: viewController)
+                          viewController: viewController,
+                          citySelectorRouter: citySelectorRouter,
+                          weatherDisplayRouter: weatherDisplayRouter,
+                          weatherDetailsRouter: weatherDetailsRouter)
     }
 }
 

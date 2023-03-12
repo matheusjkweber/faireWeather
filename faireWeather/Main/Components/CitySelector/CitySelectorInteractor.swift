@@ -1,5 +1,5 @@
 //
-//  MainInteractor.swift
+//  CitySelectorInteractor.swift
 //  faireWeather
 //
 //  Created by Matheus Weber on 11/03/23.
@@ -8,26 +8,28 @@
 import RIBs
 import RxSwift
 
-protocol MainRouting: ViewableRouting {
+protocol CitySelectorRouting: ViewableRouting {
     // TODO: Declare methods the interactor can invoke to manage sub-tree via the router.
+    func setLayout()
 }
 
-protocol MainPresentable: Presentable {
-    var listener: MainPresentableListener? { get set }
+protocol CitySelectorPresentable: Presentable {
+    var listener: CitySelectorPresentableListener? { get set }
+    func presentMainView()
 }
 
-protocol MainListener: AnyObject {
+protocol CitySelectorListener: AnyObject {
     // TODO: Declare methods the interactor can invoke to communicate with other RIBs.
 }
 
-final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteractable, MainPresentableListener {
-    weak var router: MainRouting?
+final class CitySelectorInteractor: PresentableInteractor<CitySelectorPresentable>, CitySelectorInteractable, CitySelectorPresentableListener {
 
-    weak var listener: MainListener?
+    weak var router: CitySelectorRouting?
+    weak var listener: CitySelectorListener?
 
     // TODO: Add additional dependencies to constructor. Do not perform any logic
     // in constructor.
-    override init(presenter: MainPresentable) {
+    override init(presenter: CitySelectorPresentable) {
         super.init(presenter: presenter)
         presenter.listener = self
     }
@@ -40,5 +42,9 @@ final class MainInteractor: PresentableInteractor<MainPresentable>, MainInteract
     override func willResignActive() {
         super.willResignActive()
         // TODO: Pause any business logic.
+    }
+    
+    func setLayout() {
+        presenter.presentMainView()
     }
 }
