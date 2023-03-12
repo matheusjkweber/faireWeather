@@ -67,7 +67,6 @@
 		2F3BC63A29BCDB9A00D11B0D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3BC63929BCDB9A00D11B0D /* AppDelegate.swift */; };
 		2F3BC64329BCDB9B00D11B0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F3BC64229BCDB9B00D11B0D /* Assets.xcassets */; };
 		2F3BC64629BCDB9B00D11B0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F3BC64429BCDB9B00D11B0D /* LaunchScreen.storyboard */; };
-		2F3BC65129BCDB9B00D11B0D /* faireWeatherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3BC65029BCDB9B00D11B0D /* faireWeatherTests.swift */; };
 		2F3BC65B29BCDB9B00D11B0D /* faireWeatherUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3BC65A29BCDB9B00D11B0D /* faireWeatherUITests.swift */; };
 		2F3BC65D29BCDB9B00D11B0D /* faireWeatherUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F3BC65C29BCDB9B00D11B0D /* faireWeatherUITestsLaunchTests.swift */; };
 		36921FD4B785BE225FD45CBA /* libPods-faireWeather.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 87B9367558513313930ECF6B /* libPods-faireWeather.a */; };
@@ -155,7 +154,6 @@
 		2F3BC64529BCDB9B00D11B0D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F3BC64729BCDB9B00D11B0D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2F3BC64C29BCDB9B00D11B0D /* faireWeatherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = faireWeatherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2F3BC65029BCDB9B00D11B0D /* faireWeatherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = faireWeatherTests.swift; sourceTree = "<group>"; };
 		2F3BC65629BCDB9B00D11B0D /* faireWeatherUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = faireWeatherUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F3BC65A29BCDB9B00D11B0D /* faireWeatherUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = faireWeatherUITests.swift; sourceTree = "<group>"; };
 		2F3BC65C29BCDB9B00D11B0D /* faireWeatherUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = faireWeatherUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -470,7 +468,6 @@
 			isa = PBXGroup;
 			children = (
 				2F353C7129BE630600C2398F /* RIBs */,
-				2F3BC65029BCDB9B00D11B0D /* faireWeatherTests.swift */,
 				2F353C6E29BE5A7700C2398F /* Mockables.swift */,
 			);
 			path = faireWeatherTests;
@@ -744,7 +741,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2F353C7829BE6E5800C2398F /* WeatherDisplayRouterTests.swift in Sources */,
-				2F3BC65129BCDB9B00D11B0D /* faireWeatherTests.swift in Sources */,
 				2F353C7029BE5D4500C2398F /* Mockables.swift in Sources */,
 				2F353C7D29BE6FE100C2398F /* MainRouterTests.swift in Sources */,
 				2F353C8229BE85EC00C2398F /* RootRouterTests.swift in Sources */,

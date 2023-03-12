@@ -1,12 +1,11 @@
 # Faire Weather APP
-<br />
 <p align="center">
   <p align="center">
-    The Faire Weather App is an app build for show the temperature consumed from the FaireAPI. It was built using the RIB architecture and has expanding capability. For the future, more details will be added.
+    The Faire Weather App is an app build for show the temperature consumed from the FaireAPI.
   </p>
 </p>
 
-<p align="row">
+<p align="center">
 <img src= "https://github.com/matheusjkweber/faireWeather/blob/main/Resources/app.png?raw=true" width="400" >
 </p>
 
@@ -17,21 +16,21 @@ The Faire Weather App is built as follow: <br/>
 
 <br />
 <p align="row">
-<img src= "https://github.com/matheusjkweber/faireWeather/blob/main/Resources/FaireArchitecture.png?raw=true" width="400" >
+<img src= "https://github.com/matheusjkweber/faireWeather/blob/readme/Resources/FaireArchitecture.png?raw=true" width="400" >
 </p>
 
-- [x] Root RIB
+- [x] Root RIB <br/>
 The Root RIB is responsible for consolidate the root scope of the app. If necessary add more states, they can be add under this RIB. Also it is responsible for creating and maintaining the FaireAPI, injecting in any children that wants to access it.
-- [x] Main RIB
+- [x] Main RIB <br/>
 The Main RIB is responsible for the main part of the app, everything else should be optional. The main view of the app should contain the main information that the app needs to pass: the weather. The Main RIB is responsible for consuming the FaireAPI, treating the information and pass along its children.<br/><br/>
 
 The Main RIB can receive as many components needed to mount its screen, in the future, I should build a plugin system and make the components accept more generic.
 
-- [x] CitySelector RIB
+- [x] CitySelector RIB <br/>
 The CitySelector RIB is responsible for showing the current city being shown and, in the future, select other cities to show.
-- [x] WeatherDisplay RIB
+- [x] WeatherDisplay RIB <br/>
 The WeatherDisplay RIB is responsible for displaying the main weather information.
-- [x] WeatherDetails RIB
+- [x] WeatherDetails RIB <br/>
 The WeatherDetails RIB is responsible for showing more information regarding the weather.
 <br/><br/>
 
