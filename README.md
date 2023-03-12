@@ -15,25 +15,25 @@ The usage of the RIB architecture was defined because it provides: state managem
 The Faire Weather App is built as follow: <br/>
 
 <br />
-<p align="row">
+<p align="center">
 <img src= "https://github.com/matheusjkweber/faireWeather/blob/readme/Resources/FaireArchitecture.png?raw=true" width="400" >
 </p>
 
-- [x] Root RIB <br/>
+### Root RIB 
 The Root RIB is responsible for consolidate the root scope of the app. If necessary add more states, they can be add under this RIB. Also it is responsible for creating and maintaining the FaireAPI, injecting in any children that wants to access it.
-- [x] Main RIB <br/>
-The Main RIB is responsible for the main part of the app, everything else should be optional. The main view of the app should contain the main information that the app needs to pass: the weather. The Main RIB is responsible for consuming the FaireAPI, treating the information and pass along its children.<br/><br/>
+### Main RIB 
+The Main RIB is responsible for the main part of the app, everything else should be optional. The main view of the app should contain the main information that the app needs to pass: the weather. The Main RIB is responsible for consuming the FaireAPI, treating the information and pass along its children.<br/>
 
 The Main RIB can receive as many components needed to mount its screen, in the future, I should build a plugin system and make the components accept more generic.
 
-- [x] CitySelector RIB <br/>
+### CitySelector RIB 
 The CitySelector RIB is responsible for showing the current city being shown and, in the future, select other cities to show.
-- [x] WeatherDisplay RIB <br/>
+### WeatherDisplay RIB 
 The WeatherDisplay RIB is responsible for displaying the main weather information.
-- [x] WeatherDetails RIB <br/>
+### WeatherDetails RIB 
 The WeatherDetails RIB is responsible for showing more information regarding the weather.
-<br/><br/>
 
+### More Information
 Also, the FaireWeather uses an own API developed by me using the <a href="https://malcolmkmd.medium.com/writing-network-layer-in-swift-protocol-oriented-approach-4fa40ef1f908">Malcolm Kumwenda`s Medium Tutorial</a>, in the future, support for RXSwift will be added.
 
 ## Requirements
