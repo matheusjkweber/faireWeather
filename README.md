@@ -1,94 +1,57 @@
-
-[![Swift Version][swift-image]][swift-url]
-[![Build Status][travis-image]][travis-url]
-[![License][license-image]][license-url]
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![CocoaPods Compatible](https://img.shields.io/cocoapods/v/EZSwiftExtensions.svg)](https://img.shields.io/cocoapods/v/LFAlertController.svg)  
-[![Platform](https://img.shields.io/cocoapods/p/LFAlertController.svg?style=flat)](http://cocoapods.org/pods/LFAlertController)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-
-# Product Name
-<br />
+# Faire Weather APP
 <p align="center">
-  <a href="https://github.com/alexanderritik/Best-README-Template">
-    <img src="logo.jpeg" alt="Logo" width="80" height="80">
-  </a>
   <p align="center">
-    One to two paragraph statement about your product and what it does.
+    The Faire Weather App is an app built to show the temperature consumed from the FaireAPI.
   </p>
 </p>
 
-<p align="row">
-<img src= "https://media.giphy.com/media/HYOlBKJBqgAfe/giphy.gif" width="400" >
-<img src= "https://media.giphy.com/media/HYOlBKJBqgAfe/giphy.gif" width="400" >
+<p align="center">
+<img src= "https://github.com/matheusjkweber/faireWeather/blob/main/Resources/app.png?raw=true" width="400" >
 </p>
 
-## Features
+## Architecture
+The Faire Weather App is built using the <a href="https://github.com/uber/RIBs">RIB architecture</a>, which is a cross-platform architecture framework used in Uber's project. The name means Router, Interactor and Builder. <br />
+The usage of the RIB architecture was defined because it provides: state management, testability, isolation and escalation. <br />
+Also, the RIB architecture is very good to handle dependency management due its state management. 
+The Faire Weather App is built as follow: <br/>
 
-- [x] Feature 1
-- [x] Feature 2
-- [x] Feature 3
-- [x] Feature 4
-- [x] Feature 5
+<br />
+<p align="center">
+<img src= "https://github.com/matheusjkweber/faireWeather/blob/readme/Resources/FaireArchitecture.png?raw=true" width="400" >
+</p>
+
+### Root RIB 
+The Root RIB is responsible for consolidating the root scope of the app. If necessary add more states, they can be added under this RIB. Also it is responsible for creating and maintaining the FaireAPI, injecting in any children that want to access it. <br />
+
+The Root RIB is responsible for holding the Root scope, and with this, it will create the dependencies used across the entire app. The dependencies are injected by the RootComponent. 
+### Main RIB 
+The Main RIB is responsible for the main part of the app, everything else should be optional. The main view of the app should contain the main information that the app needs to pass: the weather. The Main RIB is responsible for consuming the FaireAPI, treating the information and passing along its children.<br/>
+
+The Main RIB can receive as many components needed to mount its screen. In the future, I should build a plugin system and make the components more generic.
+
+### CitySelector RIB 
+The CitySelector RIB is responsible for showing the current city being shown and, in the future, selecting other cities to show.
+### WeatherDisplay RIB 
+The WeatherDisplay RIB is responsible for displaying the main weather information.
+### WeatherDetails RIB 
+The WeatherDetails RIB is responsible for showing more information regarding the weather.
+
+### More Information
+Also, the FaireWeather uses an own API developed by me using the <a href="https://malcolmkmd.medium.com/writing-network-layer-in-swift-protocol-oriented-approach-4fa40ef1f908">Malcolm Kumwenda`s Medium Tutorial</a>. In the future, support for RXSwift will be added.
 
 ## Requirements
 
-- iOS 8.0+
-- Xcode 7.3
+- iOS 13.0+
+- Xcode 14.2
 
 ## Installation
 
 #### CocoaPods
-You can use [CocoaPods](http://cocoapods.org/) to install `YourLibrary` by adding it to your `Podfile`:
-
-```ruby
-platform :ios, '8.0'
-use_frameworks!
-pod 'YourLibrary'
-```
-
-To get the full benefits import `YourLibrary` wherever you import UIKit
-
-``` swift
-import UIKit
-import YourLibrary
-```
-#### Carthage
-Create a `Cartfile` that lists the framework and run `carthage update`. Follow the [instructions](https://github.com/Carthage/Carthage#if-youre-building-for-ios) to add `$(SRCROOT)/Carthage/Build/iOS/YourLibrary.framework` to an iOS project.
+To install the FaireWeather app you must have [CocoaPods](http://cocoapods.org/) installed, and run the following command:
 
 ```
-github "yourUsername/yourlibrary"
-```
-#### Manually
-1. Download and drop ```YourLibrary.swift``` in your project.  
-2. Congratulations!  
-
-## Usage example
-
-```swift
-import EZSwiftExtensions
-ez.detectScreenShot { () -> () in
-    print("User took a screen shot")
-}
+pod install
 ```
 
-## Contribute
-
-We would love you for the contribution to **YourLibraryName**, check the ``LICENSE`` file for more info.
-
-## Meta
-
-Your Name – [@YourTwitter](https://twitter.com/dbader_org) – YourEmail@example.com
-
-Distributed under the XYZ license. See ``LICENSE`` for more information.
-
-[https://github.com/yourname/github-link](https://github.com/dbader/)
-
-[swift-image]:https://img.shields.io/badge/swift-3.0-orange.svg
-[swift-url]: https://swift.org/
-[license-image]: https://img.shields.io/badge/License-MIT-blue.svg
-[license-url]: LICENSE
-[travis-image]: https://img.shields.io/travis/dbader/node-datadog-metrics/master.svg?style=flat-square
-[travis-url]: https://travis-ci.org/dbader/node-datadog-metrics
-[codebeat-image]: https://codebeat.co/badges/c19b47ea-2f9d-45df-8458-b2d952fe9dad
-[codebeat-url]: https://codebeat.co/projects/github-com-vsouza-awesomeios-com
+#### CocoaPods
+In order to test the app, you need to change the target to *faireWeatherTests* and run the *cmd+U* command.
