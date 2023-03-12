@@ -17,18 +17,18 @@ public final class MainViewModel {
     
     init(weatherImage: UIImage?, cityName: String, temperature: String, descriptionText: String, lowerTemp: String, higherTemp: String) {
         self.cityName = cityName
-        self.temperature = temperature
-        self.lowerTemp = lowerTemp
-        self.higherTemp = higherTemp
+        self.temperature = String(format: "%.2f", temperature)
+        self.lowerTemp = String(format: "%.2f", lowerTemp)
+        self.higherTemp = String(format: "%.2f", higherTemp)
         self.descriptionText = descriptionText
         self.weatherImage = weatherImage
     }
     
     init(from mainWeatherModel: MainWeatherModel, weatherImage: UIImage?) {
         self.cityName = mainWeatherModel.title
-        self.temperature = "\(mainWeatherModel.consolidatedWeather.first?.theTemp ?? 0.0)"
-        self.higherTemp = "\(mainWeatherModel.consolidatedWeather.first?.maxTemp ?? 0.0)"
-        self.lowerTemp = "\(mainWeatherModel.consolidatedWeather.first?.minTemp ?? 0.0)"
+        self.temperature = "\(String(format: "%.2f", mainWeatherModel.consolidatedWeather.first?.theTemp ?? 0.0))°"
+        self.higherTemp = "\(String(format: "%.2f", mainWeatherModel.consolidatedWeather.first?.maxTemp ?? 0.0))°"
+        self.lowerTemp = "\(String(format: "%.2f", mainWeatherModel.consolidatedWeather.first?.minTemp ?? 0.0))°"
         self.descriptionText = "\(mainWeatherModel.consolidatedWeather.first?.weatherStateName ?? "")"
         self.weatherImage = weatherImage
     }
