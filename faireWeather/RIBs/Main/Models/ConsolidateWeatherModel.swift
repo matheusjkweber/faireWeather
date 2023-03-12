@@ -6,7 +6,7 @@
 //
 
 struct ConsolidateWeatherModel: Codable {
-    var id: String
+    var id: Int
     var weatherStateName: String
     var weatherStateAbbr: String
     var windDirectionCompass: String
@@ -42,7 +42,7 @@ struct ConsolidateWeatherModel: Codable {
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.decode(String.self, forKey: .id)
+        self.id = try container.decode(Int.self, forKey: .id)
         self.weatherStateName = try container.decode(String.self, forKey: .weatherStateName)
         self.weatherStateAbbr = try container.decode(String.self, forKey: .weatherStateAbbr)
         self.windDirectionCompass = try container.decode(String.self, forKey: .windDirectionCompass)

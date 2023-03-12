@@ -13,8 +13,7 @@ protocol RootDependency: Dependency {
 }
 
 final class RootComponent: Component<RootDependency> {
-
-    // TODO: Declare 'fileprivate' dependencies that are only used by this RIB.
+    var networkManager: NetworkManager = NetworkManager()
 }
 
 // MARK: - Builder

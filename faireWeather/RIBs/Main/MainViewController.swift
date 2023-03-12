@@ -16,7 +16,6 @@ protocol MainPresentableListener: AnyObject {
 }
 
 final class MainViewController: UIViewController, MainPresentable, MainViewControllable {
-    
     weak var listener: MainPresentableListener?
     private let mainView = MainView()
 
@@ -42,9 +41,24 @@ final class MainViewController: UIViewController, MainPresentable, MainViewContr
         present(viewController.uiviewController, animated: true, completion: nil)
     }
     
-    func present(components: [UIView]) {
-        for component in components {
-            mainView.addComponent(view: component)
-        }
+    func present(component: SetuppableView) {
+        mainView.addComponent(view: component)
+        component.setupLayout()
+    }
+    
+    func cleanComponents() {
+        mainView.removeComponents()
+    }
+    
+    func presentLoading() {
+        LoadingView.shared.showProgressView(self.mainView)
+    }
+    
+    func presentError(message: String) {
+        self.showMessage(message: message)
+    }
+    
+    func hideLoading() {
+        LoadingView.shared.hideProgressView()
     }
 }

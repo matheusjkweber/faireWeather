@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class WeatherDetailsView: UIView {
+class WeatherDetailsView: UIView, SetuppableView {
     fileprivate lazy var centerView: UIView = {
         let view = UIView(frame: CGRect.zero)
         return view
@@ -16,14 +16,12 @@ class WeatherDetailsView: UIView {
     
     fileprivate lazy var primaryLabel: UILabel = {
         let label = UILabel()
-        label.text = "L: 11"
         label.font = UIFont.systemFont(ofSize: 22.0)
         return label
     }()
     
     fileprivate lazy var secondaryLabel: UILabel = {
         let label = UILabel()
-        label.text = "H: 11"
         label.font = UIFont.systemFont(ofSize: 22.0)
         return label
     }()
@@ -66,5 +64,11 @@ class WeatherDetailsView: UIView {
             make.left.equalTo(primaryLabel.snp.right).offset(8.0)
             make.top.bottom.right.equalToSuperview()
         }
+    }
+    
+    func setup(lowerText: String, higherText: String) {
+        primaryLabel.text = "L: \(lowerText)"
+        secondaryLabel.text = "H: \(higherText)"
+        setupView()
     }
 }

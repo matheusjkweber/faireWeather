@@ -8,10 +8,6 @@
 import UIKit
 import SnapKit
 
-protocol MainStackViewing: UIView {
-    func setupLayout()
-}
-
 class MainView: UIView {
     fileprivate lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -74,5 +70,11 @@ class MainView: UIView {
     
     func addComponent(view: UIView) {
         stackView.addArrangedSubview(view)
+    }
+    
+    func removeComponents() {
+        for view in stackView.arrangedSubviews {
+            view.removeFromSuperview()
+        }
     }
 }
