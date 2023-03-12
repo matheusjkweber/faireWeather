@@ -30,7 +30,7 @@ final class CitySelectorBuilder: Builder<CitySelectorDependency>, CitySelectorBu
     }
 
     func build(withListener listener: CitySelectorListener) -> CitySelectorRouting {
-        let component = CitySelectorComponent(dependency: dependency)
+        _ = CitySelectorComponent(dependency: dependency)
         let viewController = CitySelectorViewController()
         let interactor = CitySelectorInteractor(presenter: viewController)
         interactor.listener = listener

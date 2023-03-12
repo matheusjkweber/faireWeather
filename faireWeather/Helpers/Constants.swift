@@ -7,4 +7,5 @@
 
 struct Constants {
     static let cityId = 4418
+    static let defaultImage = "weatherTemplate"
 }

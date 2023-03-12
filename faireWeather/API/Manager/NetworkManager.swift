@@ -98,6 +98,33 @@ class NetworkManager {
         }
     }
     
+    func requestData(request: FaireEndpoint,
+                     success: @escaping (_ result: Data) -> (),
+                     failure: @escaping (_ error: NetworkResponse) -> ()) {
+        router.request(request) { (data, response, error) in
+            if error == nil {
+                if let response = response as? HTTPURLResponse {
+                    let result = self.handleNetworkResponse(response)
+                    
+                    switch result {
+                    case .success:
+                        guard let responseData = data else {
+                            failure(NetworkResponse.noData)
+                            return
+                        }
+                        success(responseData)
+                    case .failure(let error):
+                        failure(error)
+                    }
+                } else {
+                    failure(NetworkResponse.failed)
+                }
+            } else {
+                failure(NetworkResponse.noInternetConnection)
+            }
+        }
+    }
+    
     fileprivate func handleNetworkResponse(_ response: HTTPURLResponse) -> Result<NetworkResponse>{
         switch response.statusCode {
         case 200...299: return .success

@@ -11,6 +11,7 @@ import Foundation
 
 public enum FaireEndpoint {
     case getDetails(Int)
+    case getImage(String)
 }
 
 extension FaireEndpoint: EndPointType {
@@ -28,6 +29,8 @@ extension FaireEndpoint: EndPointType {
     
     var path: String {
         switch self {
+        case .getImage(let image):
+            return "icons/\(image).png"
         case .getDetails(let id):
             return "\(id).json"
         }
@@ -49,6 +52,13 @@ extension FaireEndpoint: EndPointType {
     
     var headers: HTTPHeaders? {
         return nil
+    }
+    
+    var completeURL: URL {
+        guard let url = URL(string: "\(environmentBaseURL)\(path)") else {
+            fatalError("baseURL could not be configured.")
+        }
+        return url
     }
 }
 

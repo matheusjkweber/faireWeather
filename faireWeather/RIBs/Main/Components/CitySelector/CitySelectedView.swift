@@ -8,10 +8,9 @@
 import UIKit
 import SnapKit
 
-class CitySelectedView: UIView {
+class CitySelectedView: UIView, SetuppableView {
     fileprivate lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Selected template"
         label.font = UIFont.boldSystemFont(ofSize: 20.0)
         return label
     }()
@@ -42,5 +41,9 @@ class CitySelectedView: UIView {
             make.right.top.bottom.equalToSuperview()
             make.left.equalTo(16.0)
         }
+    }
+    
+    func setup(titleText: String) {
+        titleLabel.text = titleText
     }
 }

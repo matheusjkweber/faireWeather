@@ -7,8 +7,7 @@
 import RIBs
 
 protocol MainDependency: Dependency {
-    // TODO: Declare the set of dependencies required by this RIB, but cannot be
-    // created by this RIB.
+    var networkManager: NetworkManager {get set}
 }
 
 final class MainComponent: Component<MainDependency> {
@@ -30,7 +29,8 @@ final class MainBuilder: Builder<MainDependency>, MainBuildable {
     func build() -> MainRouting {
         let component = MainComponent(dependency: dependency)
         let viewController = MainViewController()
-        let interactor = MainInteractor(presenter: viewController)
+        let service = MainService(manager: component.dependency.networkManager)
+        let interactor = MainInteractor(presenter: viewController, mainService: service)
         let citySelectorRouter = CitySelectorBuilder(dependency: component).build(withListener: interactor)
         let weatherDisplayRouter = WeatherDisplayBuilder(dependency: component).build(withListener: interactor)
         let weatherDetailsRouter = WeatherDetailsBuilder(dependency: component).build(withListener: interactor)

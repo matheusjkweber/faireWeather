@@ -11,7 +11,7 @@ struct MainWeatherModel: Codable {
     var sunRise: String
     var sunSet: String
     var timezoneName: String
-    var parent: [ParentModel]
+    var parent: ParentModel
     var sources: [SourceModel]
     var title: String
     var locationType: String
@@ -21,13 +21,13 @@ struct MainWeatherModel: Codable {
     
     enum CodingKeys: String, CodingKey {
         case consolidatedWeather = "consolidated_weather"
-        case time = "weather_state_name"
+        case time
         case sunRise = "sun_rise"
         case sunSet = "sun_set"
         case timezoneName = "timezone_name"
         case parent
         case sources
-        case title = "max_temp"
+        case title
         case locationType = "location_type"
         case woeid
         case latLong = "latt_long"
@@ -41,7 +41,7 @@ struct MainWeatherModel: Codable {
         self.sunRise = try container.decode(String.self, forKey: .sunRise)
         self.sunSet = try container.decode(String.self, forKey: .sunSet)
         self.timezoneName = try container.decode(String.self, forKey: .timezoneName)
-        self.parent = try container.decode([ParentModel].self, forKey: .parent)
+        self.parent = try container.decode(ParentModel.self, forKey: .parent)
         self.sources = try container.decode([SourceModel].self, forKey: .sources)
         self.title = try container.decode(String.self, forKey: .title)
         self.locationType = try container.decode(String.self, forKey: .locationType)

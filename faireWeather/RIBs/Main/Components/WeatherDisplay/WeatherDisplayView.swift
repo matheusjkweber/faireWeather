@@ -8,7 +8,12 @@
 import UIKit
 import SnapKit
 
-class WeatherDisplayView: UIView {
+class WeatherDisplayView: UIView, SetuppableView {
+    fileprivate lazy var centerView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     fileprivate lazy var weatherImageView: UIImageView = {
         let imageView = UIImageView(image: UIImage(named: "weatherTemplate"))
         return imageView
@@ -16,14 +21,12 @@ class WeatherDisplayView: UIView {
     
     fileprivate lazy var tempLabel: UILabel = {
         let tempLabel = UILabel()
-        tempLabel.text = "16"
         tempLabel.font = UIFont.boldSystemFont(ofSize: 48.0)
         return tempLabel
     }()
     
     fileprivate lazy var descriptionLabel: UILabel = {
         let descriptionLabel = UILabel()
-        descriptionLabel.text = "Light Cloud"
         descriptionLabel.font = UIFont.systemFont(ofSize: 12.0)
         return descriptionLabel
     }()
@@ -42,34 +45,45 @@ class WeatherDisplayView: UIView {
     }
     
     private func setupView() {
-        addSubview(weatherImageView)
-        addSubview(tempLabel)
-        addSubview(descriptionLabel)
+        addSubview(centerView)
+        centerView.addSubview(weatherImageView)
+        centerView.addSubview(tempLabel)
+        centerView.addSubview(descriptionLabel)
     }
     
     func setupLayout() {
         self.snp.makeConstraints { make in
             make.width.equalToSuperview()
         }
+        
+        centerView.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
 
         weatherImageView.snp.makeConstraints { make in
-            make.centerX.equalToSuperview().offset(-48.0)
             make.height.width.equalTo(96.0)
-            make.top.equalToSuperview()
+            make.top.left.equalToSuperview()
         }
 
         tempLabel.snp.makeConstraints { (make) in
-            make.top.equalToSuperview()
-            make.height.width.equalTo(96.0)
+            make.centerY.equalTo(weatherImageView)
             make.left.equalTo(weatherImageView.snp.right).offset(8.0)
+            make.right.equalToSuperview()
         }
         
         descriptionLabel.snp.makeConstraints { make in
             make.height.equalTo(24.0)
-            make.top.equalTo(tempLabel.snp.bottom)
+            make.top.equalTo(weatherImageView.snp.bottom)
             make.centerX.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+    }
+    
+    func setup(weatherImage: UIImage?, tempText: String, descriptionText: String) {
+        weatherImageView.image = weatherImage
+        tempLabel.text = tempText
+        descriptionLabel.text = descriptionText
     }
 }
 

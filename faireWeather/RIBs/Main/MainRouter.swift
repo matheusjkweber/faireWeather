@@ -10,11 +10,11 @@ import RIBs
 protocol MainInteractable: Interactable, CitySelectorListener, WeatherDisplayListener, WeatherDetailsListener {
     var router: MainRouting? { get set }
     var listener: MainListener? { get set }
+    func loadComponentsFor(citySelectedView: CitySelectedView, weatherDisplayView: WeatherDisplayView, weatherDetailsView: WeatherDetailsView)
 }
 
 protocol MainViewControllable: ViewControllable {
     func present(viewController: ViewControllable)
-    func present(components: [UIView])
 }
 
 final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, MainRouting {
@@ -41,13 +41,10 @@ final class MainRouter: ViewableRouter<MainInteractable, MainViewControllable>, 
         attachChild(weatherDetailsRouter)
         attachChild(weatherDisplayRouter)
         
-        if let cityView = citySelectorRouter.viewControllable.uiviewController.view,
-            let weatherDisplayView = weatherDisplayRouter.viewControllable.uiviewController.view,
-            let weatherDetailsView = weatherDetailsRouter.viewControllable.uiviewController.view {
-            viewController.present(components: [cityView, weatherDisplayView, weatherDetailsView])
-            citySelectorRouter.setLayout()
-            weatherDisplayRouter.setLayout()
-            weatherDetailsRouter.setLayout()
+        if let cityView = citySelectorRouter.viewControllable.uiviewController.view as? CitySelectedView,
+            let weatherDisplayView = weatherDisplayRouter.viewControllable.uiviewController.view as? WeatherDisplayView,
+            let weatherDetailsView = weatherDetailsRouter.viewControllable.uiviewController.view as? WeatherDetailsView {
+            interactor.loadComponentsFor(citySelectedView: cityView, weatherDisplayView: weatherDisplayView, weatherDetailsView: weatherDetailsView)
         }
         
     }
